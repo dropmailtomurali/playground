@@ -1,5 +1,9 @@
-FROM httpd:2.4
+FROM python:3.7-slim
 
-COPY ./public-html/ /usr/local/apache2/htdocs/
-docker build -t my-apache2 .
-docker run -dit -p 8080:80 --name avatar-sample my-apache2 
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
+
+RUN pip install Flask gunicorn
+
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
