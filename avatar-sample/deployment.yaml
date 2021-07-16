@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: "Deployment"
+metadata:
+  name: "avatar-sample"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "avatar-sample"
+  template:
+    metadata:
+      labels:
+        app: "avatar-sample"
+    spec:
+      containers:
+      - name: "avatar-sample"
+        image: "gcr.io/peppy-breaker-316903/avatar-sample:latest"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"

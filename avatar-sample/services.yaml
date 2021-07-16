@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "avatar-sample"
+spec:
+  type: LoadBalancer
+  selector:
+    app: "avatar-sample"  
+  ports:
+  - port: 80
+  targetPort: 8080
